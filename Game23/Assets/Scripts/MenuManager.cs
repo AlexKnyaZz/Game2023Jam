@@ -7,7 +7,7 @@ public class MenuManager : MonoBehaviour
 {
     public void PlayGame()
     {
-        Application.LoadLevel("SampleScene");
+        Application.LoadLevel("Level_1");
     }
 
     public void ExitGame()
