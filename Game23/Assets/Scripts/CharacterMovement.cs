@@ -4,40 +4,57 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
+    //Animator
     public Animator CharacterAnimator;
+    //Animator
 
-    public GameObject BackGround;
+    //BackGround
+    public GameObject BackGroundObject;
 
-    public List<GameObject> Planes = new List<GameObject>();
+    public GameObject BackGroundSprite;
+
+    public int BackGroundSize;
+
+    public Vector3 BackGroundStartPosition;
+
+    public float BackGroundOffset;
+
+    public float Speed;
+    //BackGround
+
+    private void Awake()
+    {
+        for (int i = 0; i < BackGroundSize; i++)
+        {
+            GameObject NewBackGround = Instantiate(BackGroundSprite, BackGroundStartPosition, Quaternion.Euler(0, 0, -45), BackGroundObject.transform);
+
+            BackGroundStartPosition.x += BackGroundOffset;
+            BackGroundStartPosition.y += BackGroundOffset;
+        }
+    }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKey(KeyCode.W))
         {
-            CharacterAnimator.SetTrigger("Walk");
             CharacterAnimator.ResetTrigger("Idle");
+            CharacterAnimator.SetTrigger("Walk");
         }
-        if (Input.GetKeyUp(KeyCode.W))
+        if (Input.GetKeyUp(KeyCode.W) || Input.anyKey == false)
         {
-            CharacterAnimator.ResetTrigger("Walk");
             CharacterAnimator.SetTrigger("Idle");
+            CharacterAnimator.ResetTrigger("Walk");
         }
+
     }
 
     private void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.W))
         {
-            Vector3 BackGroundPosition = BackGround.transform.position;
+            Vector3 BackGroundPosition = BackGroundObject.transform.position;
 
-            BackGround.transform.position = new Vector3(BackGroundPosition.x - 0.1F, BackGroundPosition.y - 0.1F, BackGroundPosition.z);
-
-            for (int i = 0; i < Planes.Count; i++)
-            {
-                Vector3 BackGroundPosition1 = Planes[i].transform.position;
-
-                Planes[i].transform.position = new Vector3(BackGroundPosition1.x - 0.1F, BackGroundPosition1.y - 0.1F, BackGroundPosition1.z);
-            }
+            BackGroundObject.transform.position = new Vector3(BackGroundPosition.x - Speed, BackGroundPosition.y - Speed, BackGroundPosition.z);
         }
     }
 }
