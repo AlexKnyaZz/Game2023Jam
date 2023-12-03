@@ -7,7 +7,7 @@ public class MenuManager : MonoBehaviour
 {
     public void PlayGame()
     {
-        Application.LoadLevel("Level_3");
+        Application.LoadLevel("Level_1");
     }
 
     public void PlayOfficeGame()
