@@ -10,6 +10,11 @@ public class MenuManager : MonoBehaviour
         Application.LoadLevel("Level_1");
     }
 
+    public void PlayOfficeGame()
+    {
+        Application.LoadLevel("Level_2");
+    }
+
     public void ExitGame()
     {
         Application.Quit();
