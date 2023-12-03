@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Event : MonoBehaviour
 {
@@ -28,6 +29,14 @@ public class Event : MonoBehaviour
     public bool CatEnd;
 
     public float PatTriggerCord;
+    /// 
+    /// 
+    /// 
+    public float inOfficeCord;
+    /// 
+    /// 
+    /// 
+
     //Cat
 
     private void Update()
@@ -64,6 +73,11 @@ public class Event : MonoBehaviour
         //Cat
 
         //Cat
+
+        if (BackGroundObject.transform.position.x <= inOfficeCord)
+        {
+            SceneManager.LoadScene("Level_2");
+        }
     }
 
     //Cat
@@ -86,4 +100,8 @@ public class Event : MonoBehaviour
     {
         CharacterMovementScript.enabled = true;
     }
+
+
+    
+
 }
