@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Level3Manage : MonoBehaviour
@@ -13,6 +14,11 @@ public class Level3Manage : MonoBehaviour
     private bool Morning = false;
     public GameObject textMorningSpam;
 
+    public AudioSource Clock;
+    public bool ClockTriggered;
+
+    public GameObject Replica;
+
 
 
     // ������, ������� �������������� ������� ��������
@@ -24,16 +30,25 @@ public class Level3Manage : MonoBehaviour
     // ������ ��������, ������� ����� ������������ ��� ����
     public GameObject[] nightObjects;
 
+    public GameObject[] goodObjects;
+
+    public GameObject[] neutralObjects;
+
+    public TextMeshProUGUI HomeText1;
+
     void Start()
     {
-        // ���������� ������� � ����������� �� �������� ���������� IsDay
-        ActivateObjects(GlobalCountsManagerScript.IsDay ? dayObjects : nightObjects);
-
+        if (GlobalCountsManagerScript.Instance.bedCount != 2)
+        {
+            // ���������� ������� � ����������� �� �������� ���������� IsDay
+            ActivateObjects(GlobalCountsManagerScript.IsDay ? dayObjects : nightObjects);
+        }
         if (GlobalCountsManagerScript.IsDay)
         {
             backgroundObject.GetComponent<Renderer>().material.color = startColorAwake;
             textMorningSpam.SetActive(true);
-            Morning=true;
+            Replica.SetActive(true);
+            Morning = true;
         }
 
 
@@ -42,11 +57,33 @@ public class Level3Manage : MonoBehaviour
 
         // ����������� ������� ����� �������������
         GlobalCountsManagerScript.IncrementCounter();
+
+
+        if (GlobalCountsManagerScript.Instance.bedCount == 2)
+        {
+            if ((GlobalCountsManagerScript.Instance.guitarCount - GlobalCountsManagerScript.Instance.tvCount != 1) || (GlobalCountsManagerScript.Instance.tvCount - GlobalCountsManagerScript.Instance.guitarCount == 1))
+            {
+                ActivateObjects(neutralObjects);
+            }
+            if (GlobalCountsManagerScript.Instance.guitarCount - GlobalCountsManagerScript.Instance.tvCount == 1)
+            {
+                ActivateObjects(goodObjects);
+            }
+        }
+
+        if (Morning)
+        {
+            Clock.Play();
+        }
+        else
+        {
+            HomeText1.text = "Надеюсь сегодня удастся лечь пораньше...";
+            HomeText1.gameObject.SetActive(true);
+        }
     }
 
     void Update()
     {
-
         if (Morning)
         {
         if (Input.GetKeyDown(KeyCode.E))
@@ -64,6 +101,7 @@ public class Level3Manage : MonoBehaviour
                 //Действия после окончательного пробуждения
                 Debug.Log("Герой проснулся!");
                 textMorningSpam.SetActive(false);
+                Replica.SetActive(false);
                 //enabled = false; // Отключаем скрипт, чтобы прекратить обновление цвета
                 Morning = false;
                 awakeningProgress = 0f;

@@ -67,4 +67,14 @@ public class GG : MonoBehaviour
     {
         EventScript.CharacterWalk.enabled = true;
     }
+
+    public void Car2()
+    {
+        EventScript.AppearCarText2();
+    }
+
+    public void Car3()
+    {
+        EventScript.AppearCarText3();
+    }
 }
