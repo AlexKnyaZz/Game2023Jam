@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Event : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Event : MonoBehaviour
     public Animator CharacterAnimator;
 
     public GameObject ParentObject;
+
+    public AudioSource CharacterWalk;
     //Character
 
     //Luzha
@@ -35,7 +38,19 @@ public class Event : MonoBehaviour
     public List<Image> LuzhaButtonsList = new List<Image>();
 
     public float LuzhaButtonsSpeed;
+
+    public AudioSource LavaSound;
     //Luzha
+
+    //Lava
+    public Animator Luzha1Animator;
+    public Animator Luzha2Animator;
+
+    public Animator LavaAnimator;
+
+    public Animator Canat1Animator;
+    public Animator Canat2Animator;
+    //Lava
 
     //Cat
     public GameObject Cat;
@@ -53,6 +68,15 @@ public class Event : MonoBehaviour
     public bool CatEnd;
 
     public float PatTriggerCord;
+    /// 
+    /// 
+    /// 
+    public float inOfficeCord;
+    public float inOfficeCord1;
+    /// 
+    /// 
+    /// 
+
     //Cat
 
     private void Start()
@@ -72,6 +96,8 @@ public class Event : MonoBehaviour
             {
                 Stop();
 
+                CharacterWalk.enabled = true;
+
                 CharacterAnimator.ResetTrigger("Idle");
                 CharacterAnimator.ResetTrigger("Walk");
                 CharacterAnimator.SetTrigger("Bordur");
@@ -80,8 +106,6 @@ public class Event : MonoBehaviour
             }
             if (LuzhaOff == true && LuzhaEnd == false)
             {
-                //CharacterAnimator.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-
                 CharacterAnimator.gameObject.transform.rotation = Quaternion.Lerp(CharacterAnimator.gameObject.transform.rotation, new Quaternion(0f, 0f, 0f, 1), 0.05F);
 
                 ParentObject.transform.position = Vector3.Lerp(ParentObject.transform.position, new Vector3(0, 0, 0), 0.05F);
@@ -120,6 +144,10 @@ public class Event : MonoBehaviour
                     }
                 }
             }
+            if (BackGroundObject.transform.position.x <= inOfficeCord1)
+            {
+                SceneManager.LoadScene("LevelOffice");
+            }
         }
         //Luzha
 
@@ -154,6 +182,11 @@ public class Event : MonoBehaviour
 
                 CharacterAnimator.SetTrigger("Vstaet");
             }
+
+            if (BackGroundObject.transform.position.x <= inOfficeCord)
+            {
+                SceneManager.LoadScene("LevelOffice");
+            }
         }
         //Cat
     }
@@ -172,10 +205,37 @@ public class Event : MonoBehaviour
         CharacterMovementScript.enabled = false;
         CharacterAnimator.SetTrigger("Idle");
         CharacterAnimator.ResetTrigger("Walk");
+        CharacterWalk.enabled = false;
     }
 
     public void Continue()
     {
         CharacterMovementScript.enabled = true;
+    }
+
+    public void StartBalance()
+    {
+        Luzha1Animator.SetTrigger("Appear");
+        Luzha2Animator.SetTrigger("Appear");
+
+        LavaAnimator.SetTrigger("Appear");
+
+        Canat1Animator.SetTrigger("Appear");
+        Canat2Animator.SetTrigger("Appear");
+
+        LavaSound.enabled = true;
+    }
+
+    public void StopBalance()
+    {
+        Luzha1Animator.SetTrigger("Disappear");
+        Luzha2Animator.SetTrigger("Disappear");
+
+        LavaAnimator.SetTrigger("Disappear");
+
+        Canat1Animator.SetTrigger("Disappear");
+        Canat2Animator.SetTrigger("Disappear");
+
+        LavaSound.enabled = false;
     }
 }

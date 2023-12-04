@@ -18,6 +18,8 @@ public class GG : MonoBehaviour
         transform.position = new Vector3 (-3.8F, 3.8F, -5);
 
         BalanceScript.enabled = true;
+
+        EventScript.StartBalance();
     }
 
     public void Car()
@@ -32,6 +34,8 @@ public class GG : MonoBehaviour
         EventScript.LuzhaOff = true;
 
         EventScript.LuzhaButtons = false;
+
+        EventScript.StopBalance();
     }
 
     public void StopBalance()
@@ -47,5 +51,20 @@ public class GG : MonoBehaviour
     public void ShowButtons()
     {
         EventScript.LuzhaButtons = true;
+    }
+
+    public void HideButtons()
+    {
+        EventScript.LuzhaButtons = false;
+    }
+
+    public void WalkOff()
+    {
+        EventScript.CharacterWalk.enabled = false;
+    }
+
+    public void WalkOn()
+    {
+        EventScript.CharacterWalk.enabled = true;
     }
 }

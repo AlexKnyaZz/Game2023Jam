@@ -8,7 +8,7 @@ public class Car : MonoBehaviour
 
     void Update()
     {
-        transform.position = new Vector3(transform.position.x - Speed, transform.position.y - Speed, 0);
+        transform.position = new Vector3(transform.position.x - Speed, transform.position.y - Speed, -4);
 
         if (transform.position.x < -500 )
         {

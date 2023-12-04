@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Working : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class Working : MonoBehaviour
     private int ButtonClick = 0;
     private int FinalLetter = 0;
     private bool WakeUp = false;
+    private string textnew = "";
 
     public GameObject Of1; 
     public GameObject Of2; 
@@ -19,14 +22,19 @@ public class Working : MonoBehaviour
     public GameObject dark3; 
     public GameObject textObj; 
     public GameObject textEnter; 
+    public TextMeshProUGUI textMeshProComponent;
 
     private float timerStart = 0f;
     private bool timerStartedFirst = false;
 
 
     private bool timerStarted = true;
-    
-   
+
+    //Sound
+    public AudioSource ClickSound;
+    //Sound
+
+
     // Update is called once per frame
 
 
@@ -162,6 +170,12 @@ public class Working : MonoBehaviour
                         FinalLetter++;
                         timerStartedFirst = false; 
                         timerStarted = true; 
+                        textnew = "" + FinalLetter + "/3";
+                        textMeshProComponent.text = textnew;
+
+                        //Sound
+                        ClickSound.Play();
+                        //Sound
 
                     }
                 }
@@ -169,7 +183,7 @@ public class Working : MonoBehaviour
         }
         else
         {
-           Debug.Log("Уровень кончился"); 
+           SceneManager.LoadScene("LevelHome");
         }
     }  
 

@@ -20,6 +20,8 @@ public class CharacterMovement : MonoBehaviour
     public float BackGroundOffset;
 
     public float Speed;
+
+    public AudioSource WalkSound;
     //BackGround
 
     private void Awake()
@@ -55,6 +57,12 @@ public class CharacterMovement : MonoBehaviour
             Vector3 BackGroundPosition = BackGroundObject.transform.position;
 
             BackGroundObject.transform.position = new Vector3(BackGroundPosition.x - Speed, BackGroundPosition.y - Speed, BackGroundPosition.z);
+
+            WalkSound.enabled = true;
+        }
+        else
+        {
+            WalkSound.enabled = false;
         }
     }
 }
