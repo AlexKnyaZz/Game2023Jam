@@ -30,9 +30,17 @@ public class Working : MonoBehaviour
 
     private bool timerStarted = true;
 
+    public TextMeshProUGUI WorkText1;
+
     //Sound
     public AudioSource ClickSound;
     //Sound
+
+    private void Start()
+    {
+        WorkText1.text = "„то ж, приступим к увлекательной работе.";
+        WorkText1.gameObject.SetActive(true);
+    }
 
 
     // Update is called once per frame

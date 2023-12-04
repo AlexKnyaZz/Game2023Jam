@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Event : MonoBehaviour
 {
@@ -88,11 +89,25 @@ public class Event : MonoBehaviour
 
     //Cat
 
+    public TextMeshProUGUI CatText1;
+    public TextMeshProUGUI CatText2;
+    public TextMeshProUGUI CatText3;
+
+    public TextMeshProUGUI LuzhaText1;
+    public TextMeshProUGUI LuzhaText2;
+    public TextMeshProUGUI LuzhaText3;
+
     private void Start()
     {
+        if (CatTriggerCord != 0)
+        {
+            CatText1.text = "День за днем одна и та же дорога, один и тот же пункт назначения...";
+            CatText1.gameObject.SetActive(true);
+        }
         if (LuzhaTriggerCord != 0)
         {
-            //GameObject Luzha = Instantiate(LuzhaPerfab, new Vector3(23, 23, -1), Quaternion.Euler(0, 0, 0), BackGroundObject.transform);
+            LuzhaText1.text = "Интересно, сегодня я встречу того котика?";
+            LuzhaText1.gameObject.SetActive(true);
         }
     }
 
@@ -155,6 +170,7 @@ public class Event : MonoBehaviour
             }
             if (BackGroundObject.transform.position.x <= inOfficeCord1)
             {
+                GlobalCountsManagerScript.Instance.bedCount++;
                 SceneManager.LoadScene("LevelOffice");
             }
         }
@@ -260,5 +276,29 @@ public class Event : MonoBehaviour
         grass1Animator.SetTrigger("Disappear");
         grass2Animator.SetTrigger("Disappear");
         grass3Animator.SetTrigger("Disappear");
+    }
+
+    public void AppearCatText2()
+    {
+        CatText2.text = "Я никогда раньше не видел этого котика. Кис-кис-кис.";
+        CatText2.gameObject.SetActive(true);
+    }
+
+    public void AppearCatText3()
+    {
+        CatText3.text = "Этот кот напомнил мне о моем погибшем Мурзике. Как жаль, что я не могу снова его погладить.";
+        CatText3.gameObject.SetActive(true);
+    }
+
+    public void AppearCarText2()
+    {
+        LuzhaText2.text = "Придётся обойти эту лужу. Главное не упасть в неё.";
+        LuzhaText2.gameObject.SetActive(true);
+    }
+
+    public void AppearCarText3()
+    {
+        LuzhaText3.text = "На время я замечтался и перенёсся в свои фантазии.";
+        LuzhaText3.gameObject.SetActive(true);
     }
 }
