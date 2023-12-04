@@ -68,6 +68,15 @@ public class Event : MonoBehaviour
     public bool CatEnd;
 
     public float PatTriggerCord;
+
+    //Grass
+    public Animator grass1Animator;
+
+    public Animator grass2Animator;
+
+    public Animator grass3Animator;
+    //Grass
+
     /// 
     /// 
     /// 
@@ -237,5 +246,19 @@ public class Event : MonoBehaviour
         Canat2Animator.SetTrigger("Disappear");
 
         LavaSound.enabled = false;
+    }
+
+    public void StartGrass()
+    {
+        grass1Animator.SetTrigger("Appear");
+        grass2Animator.SetTrigger("Appear");
+        grass3Animator.SetTrigger("Appear");
+    }
+
+    public void StopGrass()
+    {
+        grass1Animator.SetTrigger("Disappear");
+        grass2Animator.SetTrigger("Disappear");
+        grass3Animator.SetTrigger("Disappear");
     }
 }
