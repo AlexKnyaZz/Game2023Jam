@@ -7,12 +7,12 @@ public class MenuManager : MonoBehaviour
 {
     public void PlayGame()
     {
-        Application.LoadLevel("Level_1");
+        Application.LoadLevel("LevelHome");
     }
 
     public void PlayOfficeGame()
     {
-        Application.LoadLevel("Level_2");
+        Application.LoadLevel("LevelOffice");
     }
 
     public void ExitGame()

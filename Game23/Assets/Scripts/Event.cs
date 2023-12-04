@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Event : MonoBehaviour
 {
@@ -53,6 +54,15 @@ public class Event : MonoBehaviour
     public bool CatEnd;
 
     public float PatTriggerCord;
+    /// 
+    /// 
+    /// 
+    public float inOfficeCord;
+    public float inOfficeCord1;
+    /// 
+    /// 
+    /// 
+
     //Cat
 
     private void Start()
@@ -120,6 +130,10 @@ public class Event : MonoBehaviour
                     }
                 }
             }
+            if (BackGroundObject.transform.position.x <= inOfficeCord1)
+            {
+                SceneManager.LoadScene("LevelOffice");
+            }
         }
         //Luzha
 
@@ -153,6 +167,11 @@ public class Event : MonoBehaviour
                 CatAnimator.SetTrigger("Vstaet");
 
                 CharacterAnimator.SetTrigger("Vstaet");
+            }
+
+            if (BackGroundObject.transform.position.x <= inOfficeCord)
+            {
+                SceneManager.LoadScene("LevelOffice");
             }
         }
         //Cat
