@@ -1,0 +1,4 @@
+endings - scenes
+forBadEnd - scripts
+froGoodEnd - scripts
+goodEnd - sprites
