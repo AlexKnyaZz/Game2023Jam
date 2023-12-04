@@ -29,8 +29,12 @@ public class Working : MonoBehaviour
 
 
     private bool timerStarted = true;
-    
-   
+
+    //Sound
+    public AudioSource ClickSound;
+    //Sound
+
+
     // Update is called once per frame
 
 
@@ -168,6 +172,10 @@ public class Working : MonoBehaviour
                         timerStarted = true; 
                         textnew = "" + FinalLetter + "/3";
                         textMeshProComponent.text = textnew;
+
+                        //Sound
+                        ClickSound.Play();
+                        //Sound
 
                     }
                 }

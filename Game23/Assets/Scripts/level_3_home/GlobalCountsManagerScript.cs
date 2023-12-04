@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GlobalCountsManagerScript : MonoBehaviour
 {
@@ -59,11 +60,16 @@ public class GlobalCountsManagerScript : MonoBehaviour
     [SerializeField]
     public int sound = 0;
 
-    // ����� ��� ���������� �������� �����������
+    public Slider SoundSlider;
+
+    //Slider
     public void IncrementSound()
     {
-        sound++;
+        sound = Mathf.RoundToInt(SoundSlider.value * 100);
     }
+    //Slider
+
+    // ����� ��� ���������� �������� �����������
 
     // ����� ��� ��������� ���������� �����������
     public int GetSound()
@@ -113,6 +119,12 @@ public class GlobalCountsManagerScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        //Slider
+        if (SoundSlider != null)
+        {
+            SoundSlider.value = (float)sound / 100;
+        }
+        //Slider
     }
     // ����������� ������� ��� ����� ����
 }
