@@ -2763,8 +2763,8 @@ MonoBehaviour:
   CatIsSitting: 0
   CatVstaet: 0
   CatEnd: 0
-  PatTriggerCord: -40
-  inOfficeCord: -25
+  PatTriggerCord: -36.6
+  inOfficeCord: -45
   inOfficeCord1: 0
 --- !u!114 &1343895208
 MonoBehaviour:
