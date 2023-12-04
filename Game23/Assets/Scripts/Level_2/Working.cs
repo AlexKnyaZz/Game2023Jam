@@ -29,8 +29,12 @@ public class Working : MonoBehaviour
 
 
     private bool timerStarted = true;
-    
-   
+
+    //Sound
+    public AudioSource ClickSound;
+    //Sound
+
+
     // Update is called once per frame
 
 
@@ -85,7 +89,7 @@ public class Working : MonoBehaviour
             }
         }
 
-        if (FinalLetter < 3)
+        if (FinalLetter < 1)
         {
             if (timerStartedFirst && !timerStarted)
             {
@@ -169,13 +173,17 @@ public class Working : MonoBehaviour
                         textnew = "" + FinalLetter + "/3";
                         textMeshProComponent.text = textnew;
 
+                        //Sound
+                        ClickSound.Play();
+                        //Sound
+
                     }
                 }
             } 
         }
         else
         {
-           SceneManager.LoadScene("Level_3");
+           SceneManager.LoadScene("LevelHome");
         }
     }  
 

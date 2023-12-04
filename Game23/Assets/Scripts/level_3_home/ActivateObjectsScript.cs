@@ -11,6 +11,8 @@ public class ActivateObjectsScript : MonoBehaviour
 
     public void OnMouseDown()
     {
+        if (GlobalCountsManagerScript.Instance.bedCount != 2)
+        {
         if (setFal.activeSelf == true && guitar.CompareTag("guitar"))
         {
         GlobalCountsManagerScript.Instance.guitarCount += 1;   
@@ -26,7 +28,7 @@ public class ActivateObjectsScript : MonoBehaviour
         setFal.SetActive(false);
         }
         setAct.SetActive(true);
-
+        }
     }
 
 }

@@ -15,4 +15,14 @@ public class CatSit : MonoBehaviour
     {
         EventScript.CatEnding();
     }
+
+    public void CatNewStart()
+    {
+        EventScript.StartGrass();
+    }
+
+    public void CatNewEnd()
+    {
+        EventScript.StopGrass();
+    }
 }

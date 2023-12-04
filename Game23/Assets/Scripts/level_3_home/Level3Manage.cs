@@ -24,11 +24,17 @@ public class Level3Manage : MonoBehaviour
     // ������ ��������, ������� ����� ������������ ��� ����
     public GameObject[] nightObjects;
 
+    public GameObject[] goodObjects;
+
+    public GameObject[] neutralObjects;
+
     void Start()
     {
+        if (GlobalCountsManagerScript.Instance.bedCount != 2)
+        {
         // ���������� ������� � ����������� �� �������� ���������� IsDay
         ActivateObjects(GlobalCountsManagerScript.IsDay ? dayObjects : nightObjects);
-
+        }
         if (GlobalCountsManagerScript.IsDay)
         {
             backgroundObject.GetComponent<Renderer>().material.color = startColorAwake;
@@ -42,6 +48,23 @@ public class Level3Manage : MonoBehaviour
 
         // ����������� ������� ����� �������������
         GlobalCountsManagerScript.IncrementCounter();
+
+
+        if (GlobalCountsManagerScript.Instance.bedCount == 2)
+        {
+            if ((GlobalCountsManagerScript.Instance.guitarCount - GlobalCountsManagerScript.Instance.tvCount != 1) && (GlobalCountsManagerScript.Instance.tvCount - GlobalCountsManagerScript.Instance.guitarCount != 1)) 
+              {
+                ActivateObjects(neutralObjects);
+              }  
+             if (GlobalCountsManagerScript.Instance.guitarCount - GlobalCountsManagerScript.Instance.tvCount == 1)
+             {
+                ActivateObjects(goodObjects);
+             }
+        }
+
+
+
+
     }
 
     void Update()

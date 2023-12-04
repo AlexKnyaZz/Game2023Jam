@@ -22,14 +22,41 @@ public class toNextLvlFromHome : MonoBehaviour
 
     private IEnumerator waitingTimeBeforeLoadNextLvl()
     {
-        if (gameObject.CompareTag("door")) {
+        if (gameObject.CompareTag("door")) 
+        {
             yield return new WaitForSeconds(4f);
-            SceneManager.LoadScene("Level_1");
+
+            if(GlobalCountsManagerScript.Instance.bedCount == 0)
+            {
+                SceneManager.LoadScene("LevelCat");
+            }
+            else  if (GlobalCountsManagerScript.Instance.bedCount == 1)
+            {
+                SceneManager.LoadScene("LevelCar");
+            }
+            else if (GlobalCountsManagerScript.Instance.bedCount == 2)
+            {
+              if ((GlobalCountsManagerScript.Instance.guitarCount - GlobalCountsManagerScript.Instance.tvCount != 1) && (GlobalCountsManagerScript.Instance.tvCount - GlobalCountsManagerScript.Instance.guitarCount != 1)) 
+              {
+                SceneManager.LoadScene("neutralEnd");
+              }  
+            }
+            
         }
         if (gameObject.CompareTag("bed"))
         {
             yield return new WaitForSeconds(4f);
             BedClick = true;
+        }
+        if (gameObject.CompareTag("guitar"))
+        {
+            if (GlobalCountsManagerScript.Instance.bedCount == 2)
+            {
+                if (GlobalCountsManagerScript.Instance.guitarCount - GlobalCountsManagerScript.Instance.tvCount == 1)
+                {
+                        SceneManager.LoadScene("goodEnd");
+                }
+            } 
         }
     }
 
@@ -54,7 +81,7 @@ public class toNextLvlFromHome : MonoBehaviour
             sleepTimer = 0f;
             BedClick = false;
             GlobalCountsManagerScript.Instance.bedCount += 1;  
-            SceneManager.LoadScene("Level_3");
+            SceneManager.LoadScene("LevelHome");
         }
         }
     }
